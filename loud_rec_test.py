@@ -30,7 +30,7 @@ while True:
     x = np.frombuffer(data, dtype="int16") / 32768.0
     if x.max() > threshold:
         filename = datetime.today().strftime("%Y%m%d%H%M%S") + ".wav"
-        print(cnt, filename)
+        print(x.max(), cnt, filename)
 
         all = []
         all.append(data)
