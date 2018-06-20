@@ -181,9 +181,9 @@ def main():
                     for content in audio_generator)
 
         responses = client.streaming_recognize(streaming_config, requests)
-        ser.write(chr(responses))
+        ser.write(responses)
         ser.write("\r\r\r")
-        
+
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
         # ser.write(chr(responses))
