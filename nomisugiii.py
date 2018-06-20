@@ -184,7 +184,7 @@ def main():
 
         # Now, put the transcription responses to use.
         listen_print_loop(responses)
-        ser.write(chr(responses)
+        ser.write(chr(responses))
         ser.write("\r\r\r")
 
 
