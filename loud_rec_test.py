@@ -7,7 +7,7 @@ from datetime import datetime
 
 chunk = 1024
 FORMAT = pyaudio.paInt16
-CHANNELS = 0
+CHANNELS = 1
 RATE = 44100
 RECORD_SECONDS = 2
 
@@ -15,6 +15,7 @@ threshold = 0.01
 
 p = pyaudio.PyAudio()
 
+imput_device_index = 0
 stream = p.open(format = FORMAT,
     channels = CHANNELS,
     rate = RATE,
