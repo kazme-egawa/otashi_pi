@@ -7,7 +7,7 @@ from datetime import datetime
 
 chunk = 1024
 FORMAT = pyaudio.paInt16
-CHANNELS = 1
+CHANNELS = 0
 RATE = 44100
 RECORD_SECONDS = 2
 
