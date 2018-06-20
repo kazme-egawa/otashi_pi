@@ -9,7 +9,7 @@
 
 import serial
 
-ser = serial.Serial("/dev/ttyAMA0", baudrate = 9600, timeout = 2)
+ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 
 # Text Print
 ser.write("Thermal Printer Shield\r");
