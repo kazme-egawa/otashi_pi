@@ -10,10 +10,10 @@ ser.write("Text Printing.\r");
 ser.write("\r\r");  # Line Feed x 2
 
 # QRcode Print
-ser.write(0x1D)  # 0x1D
-ser.write(0x78) # 0x78
-ser.write(0x4C)  # 0x4C
-ser.write(0x04)  # 0x04
+ser.write(chr(0x1D))  # 0x1D
+ser.write(chr(0x78)) # 0x78
+ser.write(chr(0x4C))  # 0x4C
+ser.write(chr(0x04))  # 0x04
 ser.write("TEST")   # DATA
 ser.write("\r\r\r\r\r\r");  # Line Feed x 6
 
