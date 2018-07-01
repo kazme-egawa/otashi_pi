@@ -27,10 +27,10 @@ ser.write("\r");  # Line Feed
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x20)) # 0x00 - 0x2F
+ser.write(chr(0x28)) # 0x00 - 0x2F
 ser.write("担:01\r")
 
-ser.write("-------------------------------\r")
+ser.write("-----------------------------\r")
 ser.write("大きい声　　　　　　　　数量 1\r\r\r")
 
 ser.write(chr(0x1B)) # 0x1B
@@ -52,7 +52,7 @@ ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x01)) # 0x00 or 01
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x1A)) # 0x00 - 0x2F
+ser.write(chr(0x20)) # 0x00 - 0x2F
 ser.write("レシート No.012\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
@@ -61,8 +61,16 @@ ser.write(chr(0x12)) # 0x12
 ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x00)) # 0x00 or 01
 
-ser.write("-------------------------------\r")
+ser.write("-----------------------------\r")
+
+ser.write(chr(0x1B)) # 0x1B
+ser.write(chr(0x6C)) # 0x6C
+ser.write(chr(0x08)) # 0x00 - 0x2F
 ser.write("》》》 記事見てね！《《《\r")
+
+ser.write(chr(0x1B)) # 0x1B
+ser.write(chr(0x4A)) # 0x4A
+ser.write(chr(0x10)) # 0xXX
 ser.write("記事はこちら！！\r")
 
 ser.write(chr(0x1B)) # 0x1B
