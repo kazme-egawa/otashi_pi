@@ -6,7 +6,7 @@ ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
-ser.write(chr(0x00))) # 0x00 or 01 or 02 or 03
+ser.write(chr(0x00)) # 0x00 or 01 or 02 or 03
 ser.write("新しいものづくりがわかるメディア\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
