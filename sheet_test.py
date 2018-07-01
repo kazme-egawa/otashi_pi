@@ -68,7 +68,7 @@ ser.write("-----------------------------\r")
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x08)) # 0x00 - 0x2F
+ser.write(chr(0x04)) # 0x00 - 0x2F
 ser.write("》》》 記事見てね！《《《\r")
 
 ser.write(chr(0x1B)) # 0x1B
