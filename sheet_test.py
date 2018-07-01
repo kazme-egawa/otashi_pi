@@ -9,8 +9,8 @@ ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x01)) # 0x00 or 01
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x0A)) # 0x00 - 0x2F
-ser.write("新しいものづくりがわかるメディア\r")
+ser.write(chr(0x05)) # 0x00 - 0x2F
+ser.write("新しいものづくりがわかるメディア\r\r")
 ser.write(chr(0x12)) # 0x12
 ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x00)) # 0x00 or 01
@@ -27,6 +27,8 @@ ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
 
 ser.write("\r");  # Line Feed
+
+ser.write("2018年07月02日（月）19:00\r")
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
@@ -45,7 +47,7 @@ ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
 
 
-ser.write("（内うるさい度 ）\r")
+ser.write("（内うるさい度　　　　100）\r")
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
