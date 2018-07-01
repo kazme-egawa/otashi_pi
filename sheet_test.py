@@ -7,6 +7,9 @@ ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 ser.write(chr(0x12)) # 0x12
 ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x01)) # 0x00 or 01
+ser.write(chr(0x1B)) # 0x1B
+ser.write(chr(0x6C)) # 0x6C
+ser.write(chr(0x0A)) # 0x00 - 0x2F
 ser.write("新しいものづくりがわかるメディア\r")
 ser.write(chr(0x12)) # 0x12
 ser.write(chr(0x53)) # 0x53
@@ -27,7 +30,7 @@ ser.write("\r");  # Line Feed
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x28)) # 0x00 - 0x2F
+ser.write(chr(0x26)) # 0x00 - 0x2F
 ser.write("担:01\r")
 
 ser.write("-----------------------------\r")
@@ -52,7 +55,7 @@ ser.write(chr(0x53)) # 0x53
 ser.write(chr(0x01)) # 0x00 or 01
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
-ser.write(chr(0x20)) # 0x00 - 0x2F
+ser.write(chr(0x1D)) # 0x00 - 0x2F
 ser.write("レシート No.012\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
