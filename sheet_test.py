@@ -41,7 +41,7 @@ ser.write("大きい声　　　　　　　　数量 1\r\r\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x01)) # 0x00 or 01
-ser.write("内容\r\r\r\r\r\r")
+ser.write("内容\r\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
@@ -54,7 +54,7 @@ ser.write(chr(0x1C)) # 0x1C
 ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
 
-ser.write("\r（内うるさい度　　　　100）\r")
+ser.write("\r（内うるさい度　　　　100）\r\r\r")
 
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x68)) # 0x68
