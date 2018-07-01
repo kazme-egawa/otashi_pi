@@ -33,7 +33,12 @@ ser.write("2018年07月02日（月）19:00\r")
 ser.write(chr(0x1B)) # 0x1B
 ser.write(chr(0x6C)) # 0x6C
 ser.write(chr(0x26)) # 0x00 - 0x2F
-ser.write("担:01\r")
+ser.write("担:01\r\r\r\r")
+
+ser.write(chr(0x1B)) # 0x1B
+ser.write(chr(0x6C)) # 0x6C
+ser.write(chr(0x28)) # 0x00 - 0x2F
+ser.write("様\r")
 
 ser.write("-----------------------------\r")
 ser.write("大きい声　　　　　　　　数量 1\r\r\r")
