@@ -10,9 +10,9 @@ chunk = 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
-RECORD_SECONDS = 2
+RECORD_SECONDS = 8
 
-threshold = 0.01
+threshold = 1
 
 p = pyaudio.PyAudio()
 
@@ -30,7 +30,7 @@ while True:
     data = stream.read(chunk)
     x = np.frombuffer(data, dtype="int16") / 32767
     print np.max(x)
-    if x.max() > threshold:
+    if x.max() = threshold:
         filename = datetime.today().strftime("%Y%m%d%H%M%S") + ".wav"
         print(x.max(), cnt, filename)
 
