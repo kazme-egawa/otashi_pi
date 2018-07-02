@@ -21,7 +21,7 @@ import numpy as np
 from datetime import datetime
 import transcribe_sheet as reciept
 
-chunk = 1024
+chunk = 4 * 1024
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 16000
