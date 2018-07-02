@@ -25,8 +25,11 @@ Example usage:
 # [START import_libraries]
 import argparse
 import io
+import serial
+from datetime import datetime
 # [END import_libraries]
 
+ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 
 # [START def_transcribe_file]
 def transcribe_file(speech_file):
@@ -56,33 +59,39 @@ def transcribe_file(speech_file):
     for result in response.results:
         # The first alternative is the most likely one for this portion.
         print(u'Transcript: {}'.format(result.alternatives[0].transcript))
+        encoded = (result.alternatives[0].transcript).encode('utf-8')
+        ser.write(encoded)
+        ser.write("\r\r\r\r\r\r")
     # [END migration_sync_response]
 # [END def_transcribe_file]
 
 
-# [START def_transcribe_gcs]
-def transcribe_gcs(gcs_uri):
-    """Transcribes the audio file specified by the gcs_uri."""
-    from google.cloud import speech
-    from google.cloud.speech import enums
-    from google.cloud.speech import types
-    client = speech.SpeechClient()
+# # [START def_transcribe_gcs]
+# def transcribe_gcs(gcs_uri):
+#     """Transcribes the audio file specified by the gcs_uri."""
+#     from google.cloud import speech
+#     from google.cloud.speech import enums
+#     from google.cloud.speech import types
+#     client = speech.SpeechClient()
+#
+#     # [START migration_audio_config_gcs]
+#     audio = types.RecognitionAudio(uri=gcs_uri)
+#     config = types.RecognitionConfig(
+#         encoding=enums.RecognitionConfig.AudioEncoding.FLAC,
+#         sample_rate_hertz=16000,
+#         language_code='ja-JP')
+#     # [END migration_audio_config_gcs]
+#
+#     response = client.recognize(config, audio)
+#     # Each result is for a consecutive portion of the audio. Iterate through
+#     # them to get the transcripts for the entire audio file.
+#     for result in response.results:
+#         # The first alternative is the most likely one for this portion.
+#         print(u'Transcript: {}'.format(result.alternatives[0].transcript))
+# # [END def_transcribe_gcs]
 
-    # [START migration_audio_config_gcs]
-    audio = types.RecognitionAudio(uri=gcs_uri)
-    config = types.RecognitionConfig(
-        encoding=enums.RecognitionConfig.AudioEncoding.FLAC,
-        sample_rate_hertz=16000,
-        language_code='ja-JP')
-    # [END migration_audio_config_gcs]
-
-    response = client.recognize(config, audio)
-    # Each result is for a consecutive portion of the audio. Iterate through
-    # them to get the transcripts for the entire audio file.
-    for result in response.results:
-        # The first alternative is the most likely one for this portion.
-        print(u'Transcript: {}'.format(result.alternatives[0].transcript))
-# [END def_transcribe_gcs]
+# [START def_sheetdasu]
+# [END def_sheetdasu]
 
 
 if __name__ == '__main__':
@@ -92,7 +101,7 @@ if __name__ == '__main__':
     parser.add_argument(
         'path', help='File or GCS path for audio file to be recognized')
     args = parser.parse_args()
-    if args.path.startswith('gs://'):
-        transcribe_gcs(args.path)
-    else:
+    # if args.path.startswith('gs://'):
+        # transcribe_gcs(args.path)
+    # else:
         transcribe_file(args.path)
