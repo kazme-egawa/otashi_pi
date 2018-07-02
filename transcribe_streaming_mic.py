@@ -131,8 +131,9 @@ def listen_print_loop(responses):
 
         else:
             print(transcript + overwrite_chars)
-            encoded = (transcript + overwrite_chars).encode()
+            encoded = (transcript).encode()
             ser.write(encoded)
+            ser.write("\r\r\r\r\r\r")
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
