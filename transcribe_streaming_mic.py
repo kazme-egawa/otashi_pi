@@ -20,6 +20,7 @@ from __future__ import division
 import re
 import sys
 import serial
+from datetime import datetime
 
 from google.cloud import speech
 from google.cloud.speech import enums
@@ -28,11 +29,123 @@ import pyaudio
 from six.moves import queue
 # [END import_libraries]
 
+ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
+
+# [START def_sheetdasu]
+def sheetdasu(ohgoe):
+    ser.write(chr(0x12)) # 0x12
+    ser.write(chr(0x53)) # 0x53
+    ser.write(chr(0x01)) # 0x00 or 01
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x06)) # 0x00 - 0x2F
+    ser.write("新しいものづくりがわかるメディア\r\r")
+    ser.write(chr(0x12)) # 0x12
+    ser.write(chr(0x53)) # 0x53
+    ser.write(chr(0x00)) # 0x00 or 01
+
+    ser.write(chr(0x1C)) # 0x1C
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x01)) # 0x00 or 01
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x0C)) # 0x00 - 0x2F
+    ser.write("fabcross\r")
+    ser.write(chr(0x1C)) # 0x1C
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x00)) # 0x00 or 01
+
+    ser.write("\r");  # Line Feed
+    date = datetime.today().strftime("%Y年%m月%d日 %H:%M")
+    ser.write(date)
+    ser.write("\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x26)) # 0x00 - 0x2F
+    ser.write("担:01\r\r\r\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x28)) # 0x00 - 0x2F
+    ser.write("様\r")
+
+    ser.write("-----------------------------\r")
+    ser.write("大きい声　　　　　　　　数量 1\r\r\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x01)) # 0x00 or 01
+    ser.write("内容\r\r")
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x00)) # 0x00 or 01
+
+    ser.write(chr(0x1C)) # 0x1C
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x01)) # 0x00 or 01
+    ser.write(ohgoe)
+    ser.write(chr(0x1C)) # 0x1C
+    ser.write(chr(0x57)) # 0x57
+    ser.write(chr(0x00)) # 0x00 or 01
+
+    ser.write("\r（内うるさい度　　　　100）\r\r\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x68)) # 0x68
+    ser.write(chr(0x00)) # 0x00 or 01 or 02 or 03
+    ser.write(chr(0x12)) # 0x12
+    ser.write(chr(0x53)) # 0x53
+    ser.write(chr(0x01)) # 0x00 or 01
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x1D)) # 0x00 - 0x2F
+    ser.write("レシート No.012\r")
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x68)) # 0x68
+    ser.write(chr(0x01)) # 0x00 or 01 or 02 or 03
+    ser.write(chr(0x12)) # 0x12
+    ser.write(chr(0x53)) # 0x53
+    ser.write(chr(0x00)) # 0x00 or 01
+
+    ser.write("-----------------------------\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x6C)) # 0x6C
+    ser.write(chr(0x04)) # 0x00 - 0x2F
+    ser.write("》》》 記事見てね！《《《\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x4A)) # 0x4A
+    ser.write(chr(0x10)) # 0xXX
+    ser.write("記事はこちら！！\r")
+
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x68)) # 0x68
+    ser.write(chr(0x00)) # 0x00 or 01 or 02 or 03
+    ser.write("\rhttps://fabcross.jp/list/series/sorepi/\r\r")
+    ser.write(chr(0x1B)) # 0x1B
+    ser.write(chr(0x68)) # 0x68
+    ser.write(chr(0x01)) # 0x00 or 01 or 02 or 03
+
+    ser.write("[それ、ラズパイでつくれるよ]\rで検索！\r")
+    ser.write("\r\r");  # Line Feed
+
+    # QRcode Print
+    ser.write(chr(0x1D))
+    ser.write(chr(0x79))
+    ser.write(chr(0x01))
+    ser.write(chr(0x1D))
+    ser.write(chr(0x78))
+    ser.write(chr(0x4C))
+    ser.write(chr(0x27))
+    ser.write("https://fabcross.jp/list/series/sorepi/")   # DATA
+    ser.write("\r\r\r\r\r\r");  # Line Feed
+# [END def_sheetdasu]
+
 # Audio recording parameters
 RATE = 16000
 CHUNK = int(RATE / 10)  # 100ms
-
-ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
@@ -146,8 +259,7 @@ def listen_print_loop(responses):
         else:
             print(transcript + overwrite_chars)
             encoded = transcript.encode('utf-8')
-            ser.write(encoded)
-            ser.write("\r\r\r\r\r\r")
+            sheetdasu(encoded)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
