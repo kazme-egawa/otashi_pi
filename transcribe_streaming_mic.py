@@ -131,7 +131,7 @@ def listen_print_loop(responses):
 
         else:
             print(transcript + overwrite_chars)
-            encoded = (transcript).encode()
+            encoded = transcript.encode()
             ser.write(encoded)
             ser.write("\r\r\r\r\r\r")
 
