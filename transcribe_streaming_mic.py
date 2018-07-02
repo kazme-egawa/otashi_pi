@@ -243,8 +243,6 @@ def listen_print_loop(responses):
 
         # Display the transcription of the top alternative.
         transcript = result.alternatives[0].transcript
-        encoded = transcript.encode('utf-8')
-        sheetdasu(encoded)
 
         # Display interim results, but with a carriage return at the end of the
         # line, so subsequent lines will overwrite them.
@@ -261,6 +259,8 @@ def listen_print_loop(responses):
 
         else:
             print(transcript + overwrite_chars)
+            encoded = transcript.encode('utf-8')
+            sheetdasu(encoded)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
