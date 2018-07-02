@@ -254,13 +254,13 @@ def listen_print_loop(responses):
         if not result.is_final:
             sys.stdout.write(transcript + overwrite_chars + '\r')
             sys.stdout.flush()
-            encoded = transcript.encode('utf-8')
-            sheetdasu(encoded)
 
             num_chars_printed = len(transcript)
 
         else:
             print(transcript + overwrite_chars)
+            encoded = transcript.encode('utf-8')
+            sheetdasu(encoded)
 
             # Exit recognition if any of the transcribed phrases could be
             # one of our keywords.
