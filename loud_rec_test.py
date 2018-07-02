@@ -28,8 +28,8 @@ cnt = 0
 
 while True:
     data = stream.read(chunk)
-    x = np.frombuffer(data, dtype="int16") / 32768.0
-    print(x.max())
+    x = np.frombuffer(data, dtype="int16")
+    print(x)
     sleep(1)
     # if x.max() > threshold:
     #     filename = datetime.today().strftime("%Y%m%d%H%M%S") + ".wav"
