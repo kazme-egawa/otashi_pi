@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import serial
+from datetime import datetime
 
 ser = serial.Serial("/dev/ttyS0", baudrate = 9600, timeout = 2)
 
@@ -27,7 +28,7 @@ ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
 
 ser.write("\r");  # Line Feed
-
+date = datetime.today().strftime("%Y年%m月%d日 %H:%M")
 ser.write("2018年07月02日（月）19:00\r")
 
 ser.write(chr(0x1B)) # 0x1B
