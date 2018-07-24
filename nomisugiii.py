@@ -39,8 +39,6 @@ stream = p.open(format = FORMAT,
     frames_per_buffer = chunk
 )
 
-cnt = 0
-
 while True:
     data = stream.read(chunk)
     x = np.frombuffer(data, dtype="int16") / 32767
@@ -48,7 +46,7 @@ while True:
     if x.max() == threshold:
         print("Recording.")
         filename = datetime.today().strftime("%Y%m%d%H%M%S") + ".wav"
-        print(x.max(), cnt, filename)
+        print(x.max(), filename)
 
         all = []
         all.append(data)
