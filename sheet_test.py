@@ -56,7 +56,7 @@ ser.write(chr(0x00)) # 0x00 or 01
 ser.write(chr(0x1C)) # 0x1C
 ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x01)) # 0x00 or 01
-ser.write("大きな声で喋ってしまいました！")
+ser.write("それラズパイでつくれるよ！\r議事録もとれるよ！")
 ser.write(chr(0x1C)) # 0x1C
 ser.write(chr(0x57)) # 0x57
 ser.write(chr(0x00)) # 0x00 or 01
